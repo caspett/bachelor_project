@@ -33,7 +33,7 @@ resource "azurerm_mssql_database" "test" {
 
 # SQL queries supplying testdata
 
-#     CREATE TABLE [dbo].[number_table2](id INT IDENTITY PRIMARY KEY, number INT)
+#     CREATE TABLE [dbo].[number_table](id INT IDENTITY PRIMARY KEY, number INT)
 #     INSERT INTO number_table (number)
 # VALUES 
 #   (1), (2), (3), (4), (5), (6), (7), (8), (9), (10),

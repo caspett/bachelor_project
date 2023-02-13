@@ -26,7 +26,24 @@ resource "kubernetes_deployment" "nginx" {
         container {
           name  = "example"
           image = "nginx:1.7.8"
-
+          env = [
+            {
+              name  = "DB_HOST"
+              value = "localhost"
+            },
+            {
+              name  = "DB_USER"
+              value = "3306"
+            },
+            {
+              name  = "DB_PASS"
+              value = "myuser"
+            },
+            {
+              name  = "DB_NAME"
+              value = "mypassword"
+            }
+          ]
           port {
             container_port = 80
           }
