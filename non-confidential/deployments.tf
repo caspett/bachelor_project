@@ -29,19 +29,19 @@ resource "kubernetes_deployment" "nginx" {
           env = [
             {
               name  = "DB_HOST"
-              value = "localhost"
+              value = azurerm_mssql_server.example.fully_qualified_domain_name
             },
             {
               name  = "DB_USER"
-              value = "3306"
+              value = azurerm_mssql_server.example.administrator_login
             },
             {
               name  = "DB_PASS"
-              value = "myuser"
+              value = azurerm_mssql_server.example.administrator_login_password
             },
             {
               name  = "DB_NAME"
-              value = "mypassword"
+              value = azurerm_mssql_database.test.name
             }
           ]
           port {
