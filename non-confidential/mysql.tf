@@ -56,9 +56,9 @@ resource "azurerm_mssql_database" "test" {
 #       "PowerShell", "-Command"
 #     ]
 #   }
-#   # depends_on = [
-#   #   azurerm_mssql_database.test,
-#   # ]
+  # depends_on = [
+  #   azurerm_mssql_database.test,
+  # ]
 #   triggers = {
 #     server_hostname = azurerm_mssql_server.example.name
 #     database_name  = azurerm_mssql_database.test.name

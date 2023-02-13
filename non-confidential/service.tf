@@ -14,6 +14,9 @@
 
 #     type = "LoadBalancer"
 #   }
+#     depends_on = [
+#     kubernetes_deployment.nginx, azurerm_kubernetes_cluster.this
+#   ]  
 # }
 
 # # This will set lb_ip to your Azure ingress' IP address.

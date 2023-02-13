@@ -45,5 +45,8 @@ resource "kubernetes_deployment" "nginx" {
       }
     }
   }
+    depends_on = [
+    azurerm_kubernetes_cluster.this
+  ]  
 }
 
