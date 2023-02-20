@@ -3,13 +3,17 @@ data "azurerm_resource_group" "this" {
 }
 data "azurerm_kubernetes_cluster" "this" {
   name = var.cluster_name
+  resource_group_name = var.target_resource_group
 }
 
 data "azurerm_mssql_server" "this" {
   name = var.mssql_server_name
+  resource_group_name = var.target_resource_group
+
 }
 
 data "azurerm_mssql_database" "this" {
   name = var.mssql_database_name
+  server_id = data.azurerm_mssql_server.this.id
 }
 
