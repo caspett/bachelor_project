@@ -1,16 +1,16 @@
 
-resource "azurerm_mssql_server" "example" {
+resource "azurerm_mssql_server" "this" {
   name                         = "non-confidential-sqlserver"
   resource_group_name          = var.target_resource_group
   location                     = data.azurerm_resource_group.this.location
   version                      = "12.0"
   administrator_login          = "4dm1n157r470r"
-  administrator_login_password = "4-v3ry-53cr37-p455w0rd"
+  administrator_login_password = var.administrator_login_password
 }
 
-resource "azurerm_mssql_database" "test" {
+resource "azurerm_mssql_database" "this" {
   name           = "acctest-db-d"
-  server_id      = azurerm_mssql_server.example.id
+  server_id      = azurerm_mssql_server.this.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
   read_scale     = false
@@ -51,16 +51,16 @@ resource "azurerm_mssql_database" "test" {
 # Execute the SQL script to insert test data
 # resource "null_resource" "insert_test_data" { 
 #   provisioner "local-exec" {
-#     command = "sqlcmd -S ${azurerm_mssql_server.example.name}.database.windows.net -U ${azurerm_mssql_server.example.administrator_login} -P ${azurerm_mssql_server.example.administrator_login_password} -d ${azurerm_mssql_database.test.name}; CREATE TABLE [dbo].[number_table2](id INT IDENTITY PRIMARY KEY, number INT); GO"
+#     command = "sqlcmd -S ${azurerm_mssql_server.this.name}.database.windows.net -U ${azurerm_mssql_server.this.administrator_login} -P ${azurerm_mssql_server.this.administrator_login_password} -d ${azurerm_mssql_database.this.name}; CREATE TABLE [dbo].[number_table2](id INT IDENTITY PRIMARY KEY, number INT); GO"
 #     interpreter = [
 #       "PowerShell", "-Command"
 #     ]
 #   }
   # depends_on = [
-  #   azurerm_mssql_database.test,
+  #   azurerm_mssql_database.this,
   # ]
 #   triggers = {
-#     server_hostname = azurerm_mssql_server.example.name
-#     database_name  = azurerm_mssql_database.test.name
+#     server_hostname = azurerm_mssql_server.this.name
+#     database_name  = azurerm_mssql_database.this.name
 #   }
 # }
