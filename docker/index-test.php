@@ -7,46 +7,37 @@
     <h1>PHP MySQL Query Example</h1>
 
     <?php
-    // MySQL database configuration
-    //IP til database server
-    $servername = getenv('DB_HOST');    
+    $host = getenv('DB_HOST');
+    $db_name = getenv('DB_NAME');
     $username = getenv('DB_USER');
     $password = getenv('DB_PASS');
-    //Database navn
-    $dbname = getenv('DB_NAME');
-
-    // Create a MySQL database connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check if the connection is successful
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    $connection = null;
+    try{
+        $connection = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
+        $connection->exec("set names utf8");
+        echo "Hello";
+    }catch(PDOException $exception){
+        echo "Connection error: " . $exception->getMessage();
     }
 
     // Execute a simple MySQL query to retrieve some data
-    $sql = "SELECT number FROM [dbo].[number_table]";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM mydb.allNumbers";
+    $result = $connection->query($sql) ;
+    if($result->rowCount() > 0){
+        echo "<table border=1><tr><th>Number</th><th>Random Number</th><th>Result</th></tr>";
 
-    if ($result->num_rows > 0) {
-        // Output the data in a table
-        echo "<table border=1><tr><th>ID</th><th>Number</th><th>Random Number</th><th>Result</th></tr>";
+        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+            $rand_number = rand(1,1000);
+            $res = $row["num"] * $rand_number;
 
-        while ($row = $result->fetch_assoc()) {
-            // Multiply the age by a random number between 1 and 1000
-            $rand_number = rand(1, 1000)
-            $result = $row["number"] * $rand_number;
+            echo "<tr><td>" . $row["num"] . "</td><td>" . $rand_number . "</td><td>" . $res . "</td></tr>";
 
-            // Output the data and the result in the table
-            echo "<tr><td>" . $row["id"] . "</td><td>" . $row["number"] . "</td><td>" . $rand_number . "</td><td>" . $result . "</td></tr>";
         }
-
         echo "</table>";
-    } else {
+    }else {
         echo "0 results";
     }
+?>
 
-    // Close the MySQL database connection
-    $conn->close();
-    ?>
 </body>
 </html>
