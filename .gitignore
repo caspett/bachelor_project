@@ -1,0 +1,4 @@
+non-confidential/cluster&database/.terraform*
+non-confidential/cluster&database/main.tfplan
+non-confidential/deployment/.terraform*
+non-confidential/deployment/main.tfplan

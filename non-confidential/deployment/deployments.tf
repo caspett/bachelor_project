@@ -1,3 +1,16 @@
+# resource "kubernetes_secret" "database-creds" {
+#   metadata {
+#     name = "database-creds"
+#   }
+#   data = {
+#     username = azurerm_mssql_server.this.administrator_login
+#     password = azurerm_mssql_server.this.administrator_login_password
+#     server   = azurerm_mssql_server.this.fully_qualified_domain_name
+#     database = azurerm_mssql_database.this.name
+#   }
+#   type = "Opaque"
+# }
+
 #The "kubernetes_deployment" resource defines the desired state of your application, including the number of replicas you want to run, the container image to use, and the ports to expose. 
 # The deployment ensures that the desired number of replicas are running at any given time.
 
@@ -30,20 +43,20 @@ resource "kubernetes_deployment" "nginx" {
           image_pull_policy = "Never"
           env {
               name  = "DB_HOST"
-              value = azurerm_mssql_server.example.fully_qualified_domain_name
+              value = data.azurerm_mssql_server.this.fully_qualified_domain_name
             }
 
           env {
               name  = "DB_USER"
-              value = azurerm_mssql_server.example.administrator_login
+              value = data.azurerm_mssql_server.this.administrator_login
             }
           env {
               name  = "DB_PASS"
-              value = azurerm_mssql_server.example.administrator_login_password
+              value = var.administrator_login_password
             }
           env {
               name  = "DB_NAME"
-              value = azurerm_mssql_database.test.name
+              value = data.azurerm_mssql_database.this.name
             }
           port {
             container_port = 80
@@ -64,7 +77,10 @@ resource "kubernetes_deployment" "nginx" {
     }
   }
     depends_on = [
-    azurerm_kubernetes_cluster.this
+    data.azurerm_kubernetes_cluster.this
   ]  
 }
 
+output "username" {
+ value =  data.azurerm_mssql_server.this
+}

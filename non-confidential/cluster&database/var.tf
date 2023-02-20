@@ -8,3 +8,7 @@ variable "config_path" {
   default = "C:/Users/Cn5043/.kube/config"
 }
 
+variable "administrator_login_password" {
+  default = "4-v3ry-53cr37-p455w0rd"
+  sensitive = true
+}
