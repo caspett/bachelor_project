@@ -8,7 +8,13 @@ variable "config_path" {
   default = "C:/Users/Cn5043/.kube/config"
 }
 
-variable "administrator_login_password" {
+variable "mssql_passwd" {
   default = "4-v3ry-53cr37-p455w0rd"
   sensitive = true
 }
+
+variable "mysql_passwd" {
+  default = "H@Sh1CoR3!123"
+  sensitive = true
+}
+

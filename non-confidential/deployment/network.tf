@@ -10,8 +10,8 @@
 
 resource "azurerm_mysql_firewall_rule" "example" {
   name                = "AllowCluster"
-  resource_group_name = var.target_resource_group
-  server_name         = azurerm_mysql_server.this.name
+  resource_group_name = data.azurerm_resource_group.this.name
+  server_name         = data.azurerm_mysql_server.this.name
   start_ip_address = cidrhost(data.azurerm_kubernetes_cluster.this.network_profile[0].pod_cidr,1)
   end_ip_address   = cidrhost(data.azurerm_kubernetes_cluster.this.network_profile[0].pod_cidr,65535)
 }
