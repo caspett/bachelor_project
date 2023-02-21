@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "nginx" {
   }
 
   spec {
-    replicas = 2
+    replicas = 1
     selector {
       match_labels = {
         App = "ScalableNginxExample"
@@ -39,24 +39,24 @@ resource "kubernetes_deployment" "nginx" {
         container {
           name  = "example"
           # image = "nginx:1.7.8"
-          image = "../docker/bachelor_img.tar"
-          image_pull_policy = "Never"
+          image = "kubdocker.azurecr.io/apache_server:latest"
+          # image_pull_policy = "Never"
           env {
               name  = "DB_HOST"
-              value = data.azurerm_mssql_server.this.fully_qualified_domain_name
+              value = data.azurerm_mysql_server.this.fqdn
             }
 
           env {
               name  = "DB_USER"
-              value = data.azurerm_mssql_server.this.administrator_login
+              value = data.azurerm_mysql_server.this.administrator_login
             }
           env {
               name  = "DB_PASS"
-              value = var.administrator_login_password
+              value = var.mysql_passwd
             }
           env {
               name  = "DB_NAME"
-              value = data.azurerm_mssql_database.this.name
+              value = "mydb"
             }
           port {
             container_port = 80
@@ -77,10 +77,10 @@ resource "kubernetes_deployment" "nginx" {
     }
   }
     depends_on = [
-    data.azurerm_kubernetes_cluster.this
+    data.azurerm_kubernetes_cluster.this, azurerm_role_assignment.this
   ]  
 }
 
 output "username" {
- value =  data.azurerm_mssql_server.this
+ value =  data.azurerm_mysql_server.this
 }

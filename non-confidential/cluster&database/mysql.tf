@@ -1,5 +1,5 @@
 resource "azurerm_mysql_server" "this" {
-  name                = "example-mysqlserver"
+  name                = "non-conf-mysqlserver"
   location            = data.azurerm_resource_group.this.location
   resource_group_name = data.azurerm_resource_group.this.name
 
@@ -15,7 +15,7 @@ resource "azurerm_mysql_server" "this" {
   geo_redundant_backup_enabled      = false
   infrastructure_encryption_enabled = true
   public_network_access_enabled     = true
-  ssl_enforcement_enabled           = true
+  ssl_enforcement_enabled           = false
   ssl_minimal_tls_version_enforced  = "TLS1_2"
 }
 

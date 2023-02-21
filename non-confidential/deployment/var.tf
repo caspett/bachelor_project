@@ -8,6 +8,7 @@ variable "config_path" {
   default = "C:/Users/Cn5043/.kube/config"
 }
 
+# MS SQL server and database variables
 variable "mssql_server_name" {
   description = "Server name"
   default = "non-confidential-sqlserver"
@@ -18,15 +19,26 @@ variable "mssql_database_name" {
   default = "acctest-db-d"
 }
 
+# Azure mysql server and database variables
+variable "mysql_server_name" {
+  description = "Server name"
+  default = "non-conf-mysqlserver"
+}
+
+variable "mysql_database_name" {
+  description = "Database name"
+  default = "mydb"
+}
+
 variable "cluster_name" {
   description = "Target cluster name"
   default = "arck-web-cluster"
 }
 
-variable "administrator_login_password" {
-  default = "4-v3ry-53cr37-p455w0rd"
-  sensitive = true
-}
+# variable "administrator_login_password" {
+#   default = "4-v3ry-53cr37-p455w0rd"
+#   sensitive = true
+# }
 
 variable "mysql_passwd" {
   default = "H@Sh1CoR3!123"
