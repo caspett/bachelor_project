@@ -1,4 +1,4 @@
-non-confidential/cluster&database/.terraform*
-non-confidential/cluster&database/main.tfplan
+non-confidential/infrastructure/.terraform*
+non-confidential/infrastructure/main.tfplan
 non-confidential/deployment/.terraform*
 non-confidential/deployment/main.tfplan
