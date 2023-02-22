@@ -1,11 +1,3 @@
-#Setting firewall rule for Microsoft SQL server
-# resource "azurerm_mssql_firewall_rule" "example" {
-#   name             = "FirewallRule1"
-#   server_id        = data.azurerm_mssql_server.this.id
-#   start_ip_address = cidrhost(data.azurerm_kubernetes_cluster.this.network_profile[0].pod_cidr,1)
-#   end_ip_address   = cidrhost(data.azurerm_kubernetes_cluster.this.network_profile[0].pod_cidr,65535)
-# }
-
 # Get public ip of cluster
 data "azurerm_public_ip" "cluster" {
   name                = [for r in data.azurerm_resources.this.resources : r if r.type == "Microsoft.Network/publicIPAddresses"][0].name
@@ -19,14 +11,14 @@ resource "azurerm_mysql_firewall_rule" "example" {
   server_name         = data.azurerm_mysql_server.this.name
   start_ip_address = data.azurerm_public_ip.cluster.ip_address
   end_ip_address   =  data.azurerm_public_ip.cluster.ip_address
-#   end_ip_address   = cidrhost(data.azurerm_kubernetes_cluster.this.network_profile[0].pod_cidr,65535)
 }
+
+#Getting information about all resources in specified resource group
 data "azurerm_resources" "this" {
   resource_group_name = data.azurerm_kubernetes_cluster.this.node_resource_group
 }
 
-# Role assigment for allowing cluster to pull image from container registry
-
+#Role assigment for allowing cluster to pull image from container registry
 resource "azurerm_role_assignment" "this" {
   principal_id                     = data.azurerm_kubernetes_cluster.this.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
@@ -34,10 +26,7 @@ resource "azurerm_role_assignment" "this" {
   skip_service_principal_aad_check = true
 }
 
-output "vnet_cidr" {
-  value = [for r in data.azurerm_resources.this.resources : r if r.type == "Microsoft.Network/publicIPAddresses"][0].name
-}
-
+#What public endpoint is used by the cluster to connect to the database 
 output "public_ip" {
-  value = data.azurerm_public_ip.cluster
+  value = data.azurerm_public_ip.cluster.ip_address
 }
