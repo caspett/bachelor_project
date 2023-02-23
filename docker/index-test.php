@@ -24,22 +24,34 @@
         echo "Connection error: " . $exception->getMessage();
     }
 
+    try{
+        $ssl_connection = "SELECT * FROM performance_schema.session_status WHERE VARIABLE_NAME IN ('Ssl_version','Ssl_cipher');";
+        $result = $connection->query($ssl_connection) ;
+        echo $result;
+    }catch(PDOException $exception) {
+        echo "Query error: " . $exception->getMessage();
+    }
+
     // Execute a simple MySQL query to retrieve some data
     $sql = "SELECT * FROM mydb.allNumbers";
-    $result = $connection->query($sql) ;
-    if($result->rowCount() > 0){
-        echo "<table border=1><tr><th>Number</th><th>Random Number</th><th>Result</th></tr>";
+    try {
+        $result = $connection->query($sql);
+        if($result->rowCount() > 0){
+            echo "<table border=1><tr><th>Number</th><th>Random Number</th><th>Result</th></tr>";
 
-        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-            $rand_number = rand(1,1000);
-            $res = $row["num"] * $rand_number;
+            while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                $rand_number = rand(1,1000);
+                $res = $row["num"] * $rand_number;
 
-            echo "<tr><td>" . $row["num"] . "</td><td>" . $rand_number . "</td><td>" . $res . "</td></tr>";
+                echo "<tr><td>" . $row["num"] . "</td><td>" . $rand_number . "</td><td>" . $res . "</td></tr>";
 
-        }
+            }
         echo "</table>";
-    }else {
-        echo "0 results";
+        }else {
+            echo "0 results";
+        }
+    }catch(PDOException $exception) {
+        echo "Query error: " . $exception->getMessage();
     }
 ?>
 
