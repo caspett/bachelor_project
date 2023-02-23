@@ -1,7 +1,7 @@
 #The "kubernetes_deployment" resource defines the desired state of your application, including the number of replicas you want to run, the container image to use, and the ports to expose. 
 # The deployment ensures that the desired number of replicas are running at any given time.
 
-resource "kubernetes_deployment" "nginx" {
+resource "kubernetes_deployment" "apache_server" {
   metadata {
     name = "scalable-apache-example"
     labels = {
