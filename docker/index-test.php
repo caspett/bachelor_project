@@ -11,9 +11,13 @@
     $db_name = getenv('DB_NAME');
     $username = getenv('DB_USER');
     $password = getenv('DB_PASS');
+    $options = array(
+        PDO::MYSQL_ATTR_SSL_CA => "/var/www/html/BaltimoreCyberTrustRoot.crt.pem"
+    );
+    // $db = new PDO("mysql:host=" . $host . ";port=3306;dbname=" . $db_name, $username, $password, $options);   
     $connection = null;
     try{
-        $connection = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
+        $connection = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password, $options);
         $connection->exec("set names utf8");
         echo "Hello";
     }catch(PDOException $exception){

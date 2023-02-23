@@ -9,6 +9,7 @@ RUN apt-get install apache2 libapache2-mod-php php-mysql php-pdo-mysql -y
 RUN rm /var/www/html/index.html
 # ADD code/* /var/www/html/
 ADD index-test.php /var/www/html/index.php
+ADD BaltimoreCyberTrustRoot.crt.pem /var/www/html/BaltimoreCyberTrustRoot.crt.pem
 # ONBUILD ADD ./var/www/html/
 EXPOSE 80
 ENTRYPOINT ["/usr/sbin/apache2ctl"]
