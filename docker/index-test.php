@@ -24,13 +24,13 @@
         echo "Connection error: " . $exception->getMessage();
     }
 
-    try{
-        $ssl_connection = "SELECT * FROM performance_schema.session_status WHERE VARIABLE_NAME IN ('Ssl_version','Ssl_cipher');";
-        $result = $connection->query($ssl_connection) ;
-        echo $result;
-    }catch(PDOException $exception) {
-        echo "Query error: " . $exception->getMessage();
-    }
+    // try{
+    //     $ssl_connection = "SELECT * FROM performance_schema.session_status WHERE VARIABLE_NAME IN ('Ssl_version','Ssl_cipher');";
+    //     $result = $connection->query($ssl_connection) ;
+    //     echo $result;
+    // }catch(PDOException $exception) {
+    //     echo "Query error: " . $exception->getMessage();
+    // }
 
     // Execute a simple MySQL query to retrieve some data
     $sql = "SELECT * FROM mydb.allNumbers";
