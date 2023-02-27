@@ -2,6 +2,10 @@
 data "azurerm_public_ip" "cluster" {
   name                = [for r in data.azurerm_resources.this.resources : r if r.type == "Microsoft.Network/publicIPAddresses"][0].name
   resource_group_name = data.azurerm_kubernetes_cluster.this.node_resource_group
+
+  depends_on = [
+    data.azurerm_resources.this
+  ]
 }
 
 #Setting firewall rule for azure mysql server
@@ -11,6 +15,10 @@ resource "azurerm_mysql_firewall_rule" "example" {
   server_name         = data.azurerm_mysql_server.this.name
   start_ip_address = data.azurerm_public_ip.cluster.ip_address
   end_ip_address   =  data.azurerm_public_ip.cluster.ip_address
+
+  depends_on = [
+    data.azurerm_resources.this
+  ]
 }
 
 #Getting information about all resources in specified resource group
@@ -26,7 +34,11 @@ resource "azurerm_role_assignment" "this" {
   skip_service_principal_aad_check = true
 }
 
-#What public endpoint is used by the cluster to connect to the database 
+# What public endpoint is used by the cluster to connect to the database 
 output "public_ip" {
   value = data.azurerm_public_ip.cluster.ip_address
 }
+
+# output "test" {
+#   value = data.azurerm_resources.this.resources
+# }

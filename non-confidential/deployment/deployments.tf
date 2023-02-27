@@ -10,7 +10,7 @@ resource "kubernetes_deployment" "apache_server" {
   }
 
   spec {
-    replicas = 2
+    replicas = 1
     selector {
       match_labels = {
         App = "ScalableApacheExample"
