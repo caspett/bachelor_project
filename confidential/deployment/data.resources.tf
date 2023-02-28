@@ -17,3 +17,12 @@ data "azurerm_container_registry" "this" {
   resource_group_name = "rg-non-confidential-dev"
 }
 
+# Fetching host ip address
+data "http" "my_ip" {
+  url = "https://ifconfig.co"
+  request_headers = {
+    "Accept" = "text/plain"
+  }
+}
+
+

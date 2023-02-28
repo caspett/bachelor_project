@@ -35,7 +35,6 @@ data "http" "my_ip" {
   }
 }
 
-
 #Creating a firewall rule that allows terraform to connect to database
 resource "azurerm_mysql_firewall_rule" "host" {
   name                = "AllowHost"

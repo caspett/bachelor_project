@@ -27,6 +27,12 @@ resource "azurerm_kubernetes_cluster" "this" {
   }
 }
 
+resource "null_resource" "enable_addons" {
+  provisioner "local-exec" {
+    command = "az aks enable-addons --addons confcom --name ${azurerm_kubernetes_cluster.this.name} --resource-group ${var.target_resource_group}"
+  }
+}
+
 output "client_certificate" {
   value     = azurerm_kubernetes_cluster.this.kube_config.0.client_certificate
   sensitive = true
