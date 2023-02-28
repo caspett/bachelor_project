@@ -27,6 +27,9 @@ resource "azurerm_kubernetes_cluster" "this" {
   }
 }
 
+#Sources:
+# https://learn.microsoft.com/en-us/azure/confidential-computing/confidential-enclave-nodes-aks-get-started
+# https://learn.microsoft.com/en-us/azure/confidential-computing/confidential-nodes-aks-overview#confidential-computing-add-on-for-aks
 resource "null_resource" "enable_addons" {
   provisioner "local-exec" {
     command = "az aks enable-addons --addons confcom --name ${azurerm_kubernetes_cluster.this.name} --resource-group ${var.target_resource_group}"
