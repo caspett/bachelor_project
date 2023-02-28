@@ -1,6 +1,6 @@
 # Dependencies:
 
-Mysql
-Git
-Terraform
-AzureCLI
+* Mysql
+* Git
+* Terraform
+* AzureCLI
