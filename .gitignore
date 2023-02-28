@@ -2,3 +2,7 @@ non-confidential/infrastructure/.terraform*
 non-confidential/infrastructure/main.tfplan
 non-confidential/deployment/.terraform*
 non-confidential/deployment/main.tfplan
+confidential/infrastructure/.terraform*
+confidential/infrastructure/main.tfplan
+confidential/deployment/.terraform*
+confidential/deployment/main.tfplan
