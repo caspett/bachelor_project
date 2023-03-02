@@ -35,3 +35,9 @@ cd non-confidential/deployment
 terraform init -backend-config="nonConf.tfbackend"
 terraform plan -out main.tfplan
 terraform apply "main.tfplan"
+
+
+## Cleanup infrastructure:
+
+**To clean up your infrastructure just run the following command in the same path as where you initialized terraform**
+terraform destroy -auto-approve
