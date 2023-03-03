@@ -7,7 +7,7 @@ data "azurerm_resource_group" "this" {
 
 #Opprett et kubernetes cluster
 resource "azurerm_kubernetes_cluster" "this" {
-  name                = "arck-web-cluster"
+  name                = "conf-arck-web-cluster"
   location            = data.azurerm_resource_group.this.location
   resource_group_name = data.azurerm_resource_group.this.name
   dns_prefix          = "exampleaks1"
