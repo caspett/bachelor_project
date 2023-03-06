@@ -10,8 +10,6 @@ RUN rm /var/www/html/index.html
 # ADD code/* /var/www/html/
 <<<<<<< HEAD
 ADD index-heavy.php /var/www/html/index.php
-=======
-ADD index-test.php /var/www/html/index.php
 ADD BaltimoreCyberTrustRoot.crt.pem /var/www/html/BaltimoreCyberTrustRoot.crt.pem
 >>>>>>> 7e9d8a80c6606ae4ce327d0fa45882de8edd1ed8
 # ONBUILD ADD ./var/www/html/
