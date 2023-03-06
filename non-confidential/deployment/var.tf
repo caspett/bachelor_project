@@ -32,7 +32,7 @@ variable "mysql_database_name" {
 
 variable "cluster_name" {
   description = "Target cluster name"
-  default = "arck-web-cluster"
+  default = "non-conf-arck-web-cluster"
 }
 
 variable "mysql_passwd" {
