@@ -25,7 +25,7 @@ resource "kubernetes_deployment" "apache_server" {
       spec {
         container {
           name  = "conf-webserver"
-          image = "kubdocker.azurecr.io/apache_server:latest"
+          image = "kubdocker.azurecr.io/slow_server:v1"
           env {
               name  = "DB_HOST"
               value = data.azurerm_mysql_server.this.fqdn
