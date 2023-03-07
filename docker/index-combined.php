@@ -39,21 +39,21 @@ for ($i = 1; $i < $max; $i++) {
     $id = $i % 1000;
     $sql = "SELECT * FROM mydb.allNumbers WHERE Num={$id}";
     
-    if ($id % 3 == 0){
-        // try {
-        //     $result = $connection->query($sql);
-        //     if ($result->rowCount() > 0) {
+    if ($id % 5 == 0){
+        try {
+            $result = $connection->query($sql);
+            if ($result->rowCount() > 0) {
 
-        //         // Fetching number
-        //         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        //             array_push($database_fetches, $row);
-        //         }
+                // Fetching number
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    array_push($database_fetches, $row);
+                }
 
-        //     }
-        // } catch (PDOException $exception) {
-        //     echo "Query error: {$exception->getMessage()}";
-        //     exit;
-        // }
+            }
+        } catch (PDOException $exception) {
+            echo "Query error: {$exception->getMessage()}";
+            exit;
+        }
     }
 
     for ($j = 2; $j <= ($i / 2); $j++) {
