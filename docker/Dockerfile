@@ -8,7 +8,8 @@ RUN apt-get install apache2 libapache2-mod-php php-mysql php-pdo-mysql -y
 # RUN git clone https://git.cs.oslomet.no/kyrre.begnum/bookface.git
 RUN rm /var/www/html/index.html
 # ADD code/* /var/www/html/
-ADD index-heavy.php /var/www/html/index.php
+# ADD index-heavy.php /var/www/html/index.php
+ADD index-combined.php /var/www/html/index.php
 ADD BaltimoreCyberTrustRoot.crt.pem /var/www/html/BaltimoreCyberTrustRoot.crt.pem
 # ONBUILD ADD ./var/www/html/
 EXPOSE 80
