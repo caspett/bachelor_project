@@ -39,7 +39,7 @@ for ($i = 1; $i < $max; $i++) {
     $id = $i % 1000;
     $sql = "SELECT * FROM mydb.allNumbers WHERE Num={$id}";
     
-    if ($id % 2 == 0){
+    if ($id % 3 == 0){
         try {
             $result = $connection->query($sql);
             if ($result->rowCount() > 0) {
