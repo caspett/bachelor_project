@@ -14,10 +14,18 @@ az aks get-credentials --admin --name conf-arck-web-cluster --resource-group rg-
 kubectl get nodes -o wide
 kubectl get pods --all-namespaces
 
+
+
+
+
+
+
+
+
 ## Retrieve the join token for your Fortanix CCM account from the CCM UI and store it as a Kubernetes secret in your cluster.
 # Navigate to the COMPUTE NODES tab in the CCM UI and click + ENROLL NODE to bring up the token dialog. Copy the token into the following variable
 
-$token = ""
+$token = "MX1emNUDwnpWNXpjf0ZEVVJfkwtq67Vj9M6nhC8M4Xqs31Tizkcynnhz74uXttEPI1CPAhKaMpsIguraFle4fg"
 # Use the following command to store the token as a Kubernetes secret for the cluster (Replace <token> value with your token)
 kubectl create secret generic em-token --from-literal=token=$token
 

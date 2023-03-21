@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sgx-test
+  labels:
+    app: sgx-test
+spec:
+  template:
+    metadata:
+      labels:
+        app: sgx-test
+    spec:
+      containers:
+      - name: sgxtest
+        image: kubdocker.azurecr.io/conf-apache-server:v1
+        env:
+        - name: DB_HOST
+          value: "conf-mysqlserver.mysql.database.azure.com"
+        - name: DB_USER
+          value: "mysqladminunen@conf-mysqlserver"
+        - name: DB_PASS
+          value: "H@Sh1CoR3!123"
+        - name: DB_NAME
+          value: "mydb"
+          
+        resources:
+          limits:
+            sgx.intel.com/epc: 99Mi # This limit will automatically place the job into a confidential computing node and mount the required driver volumes. sgx limit setting needs "confcom" AKS Addon as referenced above. 
+      restartPolicy: Never
+  backoffLimit: 0
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sgx-test-lb
+  labels:
+    app: sgx-test
+spec:
+  type: LoadBalancer
+  selector:
+    app: sgx-test
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
