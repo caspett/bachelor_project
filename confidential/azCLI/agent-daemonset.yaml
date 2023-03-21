@@ -57,8 +57,12 @@ spec:
             - name: ATTESTATION_TYPE
               value: "DCAP"
             - name: MANAGER_ENDPOINT
-              value: "ccm.fortanix.com:443"
-            - name: NODE_IP                               #Maybe we should look at how non-conf environment looks like with its load balancer
-              value: "10.224.0.4"                         #Maybe it shouldnt run as a job (since jobs are made to be terminated)
-            - name: NODE_NAME                             #Maybe the container runs out of memory?
-              value: "aks-default-12608996-vmss000000"    #Try hardcoding NODE_NAME and NODE_IP
+              value: "ccm.fortanix.com:443"                 
+            - name: NODE_IP
+              valueFrom:                        #Maybe we should look at how non-conf environment looks like with its load balancer (load balancer should work)
+                fieldRef:                       #Maybe it shouldnt run as a job (since jobs are made to be terminated)  
+                  fieldPath: status.hostIP
+            - name: NODE_NAME
+              valueFrom:                        
+                fieldRef:                       #Maybe the container runs out of memory? (should not be the case)
+                  fieldPath: spec.nodeName      #Try hardcoding NODE_NAME and NODE_IP    (Didnt do anything)
