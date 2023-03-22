@@ -20,10 +20,10 @@ kubectl get pods --all-namespaces
 kubectl apply -f conf-webserver.yaml
 
 #Check application logs:
-kubectl logs -f sgx-test-m5ck9
-
 kubectl logs -l app=sgx-test
 
+#Print logs to file
+kubectl logs sgx-test-l44k6 > log2.txt
 
 
 #Cleanup

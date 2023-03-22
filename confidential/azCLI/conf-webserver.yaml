@@ -12,20 +12,20 @@ spec:
     spec:
       containers:
       - name: sgxtest
-        image: kubdocker.azurecr.io/conf-simpleapache:v4
+        image: kubdocker.azurecr.io/conf-apache-server:v4
         env:
         - name: ENCLAVEOS_LOG_LEVEL
           value: debug
         - name: ENCLAVEOS_LOG_TARGET
           value: inline
-        # - name: DB_HOST
-        #   value: "conf-mysqlserver.mysql.database.azure.com"
-        # - name: DB_USER
-        #   value: "mysqladminunen@conf-mysqlserver"
-        # - name: DB_PASS
-        #   value: "H@Sh1CoR3!123"
-        # - name: DB_NAME
-        #   value: "mydb"
+        - name: DB_HOST
+          value: "conf-mysqlserver.mysql.database.azure.com"
+        - name: DB_USER
+          value: "mysqladminunen@conf-mysqlserver"
+        - name: DB_PASS
+          value: "H@Sh1CoR3!123"
+        - name: DB_NAME
+          value: "mydb"
           
         resources:
           limits:
