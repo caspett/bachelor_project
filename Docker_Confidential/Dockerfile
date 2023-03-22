@@ -1,11 +1,10 @@
-FROM httpd:latest
+FROM php:8.1.17-apache
 
 ENV TZ=Europe/Oslo
 WORKDIR /home/ubuntu/web-bookface
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update
 RUN apt-get install net-tools
-RUN apt-get install apache2 libapache2-mod-php php-mysql php-pdo-mysql -y
 RUN rm /var/www/html/index.html
 ADD index-combined.php /var/www/html/index.php
 ADD BaltimoreCyberTrustRoot.crt.pem /var/www/html/BaltimoreCyberTrustRoot.crt.pem
