@@ -1,4 +1,4 @@
-FROM php:8.1.17-apache
+FROM ubuntu:20.04
 
 ENV TZ=Europe/Oslo
 WORKDIR /home/ubuntu/web-bookface
