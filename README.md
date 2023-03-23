@@ -99,3 +99,5 @@ terraform apply "main.tfplan"
 ```
 terraform destroy -auto-approve
 ```
+
+**Resterende resursser i azure må ryddes opp manuelt via Azure portalen**
