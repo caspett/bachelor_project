@@ -28,8 +28,8 @@ Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å repl
 * Følg steg 3 i fortanix guiden. Merk at ved punkt 3 så benytter vi oss av docker imaget som ble laget i stegene ovenfor. Dette imaget skal gjøre konfidensielt. Docker imaget phpsite vil altså være det orginale imaget, mens conf-apache-server blir navnet på det konfidensielle imaget. Applikasjonen ble dermed konfigurert slik:
 ![](./images/createApplicationPart1.png)
 ![](./images/createApplicationPart2.png)
-![](./images/createApplicationPart3.png)
-Certificate Configuration skal stå tomt
+![](./images/createApplicationPart3.**png)
+**Certificate Configuration** skal stå tomt
 * Følg steg 4 i fortanix guiden. Her er det viktig at man velger riktig tagg på imaget, slik at man konverterer riktig image. I tillegg så må man forsikre seg om at "Use saved credentials" er huket av. Ettersom image navnene ble spesifisert når applikasjonen ble laget, så trenger en bare å fylle ut riktig tagg. Da vil konfigurasjonen se slik ut:
 ![](./images/imageCreate.png)
 * Følg steg 5 i fortanix guiden.
