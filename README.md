@@ -16,14 +16,14 @@ Produktet i denne oppgaven er satt opp i Azure. Dermed så er en avhengig av til
 # Fullstendig guide til oppsett av miljøene
 Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å replikere miljøet vårt. Dermed er det viktig at man følger denne guiden ordentlig hvis målet er å fullstendig replikere oppsettet brukt i denne oppgaven. Guiden benytter seg blant annet av Fortanix sin ["Quickstart Guide"](https://support.fortanix.com/hc/en-us/articles/360043484152-Quickstart-Guide). 
 
-* Følg nedlastningsguiden under ["Nødvendig Programvare"](#nedlastningsguide)
-* Oppfyll alle ["forutsetninger"](#forutsetninger) knyttet til Azure miljøet
-* Følg introduksjonvideon som befinner seg øverst i Fortanix sin introduksjons guide --> ["Quickstart Guide"](https://support.fortanix.com/hc/en-us/articles/360043484152-Quickstart-Guide). 
+* Følg nedlastningsguiden under [Nødvendig Programvare](#nedlastningsguide)
+* Oppfyll alle [forutsetninger](#forutsetninger) knyttet til Azure miljøet
+* Følg introduksjonvideon som befinner seg øverst i Fortanix sin introduksjons guide --> [Quickstart Guide](https://support.fortanix.com/hc/en-us/articles/360043484152-Quickstart-Guide). 
 * Følg steg 1 i fortanix guiden
 * Følg steg 2 i fortanix guiden. Husk å huke av for "This is a test-only deployment". Her er det verdt å merke at brukeren som opprettes må manuelt godkjennes av Fortanix. Dermed så er dette et steg som kan ta en del tid på Fortanix sin side. Men hvis det skulle haste så går det an å fremskyve prosessen ved å kontakte Fortanix direkte.
-* Gjør ["Container Registry innstillinger"](#CR)
-* Gjør ["Bygging av docker image"](#dockerbuild)
-* Gjør ["Pushing av docker image til Azure Container Registry (CR)"](#dockerpush)
+* Gjør [Container Registry innstillinger](#CR)
+* Gjør [Bygging av docker image](#dockerbuild)
+* Gjør [Pushing av docker image til Azure Container Registry (CR)](#dockerpush)
 * Følg steg 3 i fortanix guiden. Merk at ved punkt 3 så benytter vi oss av docker imaget som ble laget i stegene ovenfor. Dette gjør vi for å spesifisere hvilket image som skal gjøres konfidensielt. Applikasjonen ble konfigurert slik:
 ![](./images/createApplicationPart1.png)
 ![](./images/createApplicationPart2.png)
