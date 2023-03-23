@@ -25,7 +25,7 @@ Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å repl
 
 For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og publsisere docker images så er den nødt til å autentiseres. Dette kan oppnås ved hjelp av brukernavn og passord, noe som krever at en endrer på noen innstillinger hos "Container Registry" (CR). Etter opprettelse av resurssen så er en nødt til å gå inn på "Access keys" som befinner seg under "Settings". Videre så må "Admin user" være satt til "Enabled". Når dette er gjort så vil en få tilgang på noen passord som senere skal brukes til å autentisere CCM. Til slutt så burde CR se tilnærmet lik ut som på bilde under.
 
-![alt text](https://github.com/caspett/bachelor_project/blob/main/images/kubdocker.png?raw=true)
+![alt text](./images/kubdocker.png)
 # Bygging av docker image
 
 I dette oppsettet så bygger vi et image som vi kaller phpsite og tagger den med v1 for å holde kontroll på versjonen av imaget
