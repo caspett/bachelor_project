@@ -16,12 +16,12 @@ Produktet i denne oppgaven er satt opp i Azure. Dermed så er en avhengig av til
 # Fullstendig guide til oppsett av miljøene
 Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å replikere miljøet vårt. Dermed er det viktig at man følger denne guiden ordentlig hvis målet er å fullstendig replikere oppsettet brukt i denne oppgaven. Guiden benytter seg blant annet av Fortanix sin ["Quickstart Guide"](https://support.fortanix.com/hc/en-us/articles/360043484152-Quickstart-Guide). 
 
-* Følg nedlastningsguiden under [Nødvendig Programvare](#nedlastningsguide)
+* Følg [nedlastningsguiden](#nedlastningsguide) under Nødvendig Programvare
 * Oppfyll alle [forutsetninger](#forutsetninger) knyttet til Azure miljøet
 * Følg introduksjonvideon som befinner seg øverst i Fortanix sin introduksjons guide --> [Quickstart Guide](https://support.fortanix.com/hc/en-us/articles/360043484152-Quickstart-Guide). 
 * Følg steg 1 i fortanix guiden
 * Følg steg 2 i fortanix guiden. Husk å huke av for "This is a test-only deployment". Her er det verdt å merke at brukeren som opprettes må manuelt godkjennes av Fortanix. Dermed så er dette et steg som kan ta en del tid på Fortanix sin side. Men hvis det skulle haste så går det an å fremskyve prosessen ved å kontakte Fortanix direkte.
-* [Container Registry innstillinger](#CR)
+* [Container Registry innstillinger](#container-registry-innstillinger)
 * [Autentiser CCM mot CR](#connectCR)
 * [Bygging av docker image](#dockerbuild)
 * [Pushing av docker image til Azure Container Registry (CR)](#dockerpush)
@@ -37,7 +37,7 @@ Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å repl
 * Kopier "join token" inn i $Token variabelen som befinner seg i ./confidential/deployment/setup.ps1 filen. 
 * [Non-Confidential setup](#nonconf)
 * [Confidential setup](#conf)
-# <a name="CR"></a>Container Registry innstillinger
+# <a name="container-registry-innstillinger"></a>Container Registry innstillinger
 
 For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og publsisere docker images så er den nødt til å autentiseres. Dette kan oppnås ved hjelp av brukernavn og passord, noe som krever at en endrer på noen innstillinger hos "Container Registry" (CR). Etter opprettelse av resurssen så er en nødt til å gå inn på "Access keys" som befinner seg under "Settings". Videre så må "Admin user" være satt til "Enabled". Når dette er gjort så vil en få tilgang på noen passord som senere skal brukes til å autentisere CCM. Til slutt så burde CR se tilnærmet lik ut som på bilde under.
 
