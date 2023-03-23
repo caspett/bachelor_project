@@ -21,15 +21,22 @@ Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å repl
 * Følg introduksjonvideon som befinner seg øverst i Fortanix sin introduksjons guide --> [Quickstart Guide](https://support.fortanix.com/hc/en-us/articles/360043484152-Quickstart-Guide). 
 * Følg steg 1 i fortanix guiden
 * Følg steg 2 i fortanix guiden. Husk å huke av for "This is a test-only deployment". Her er det verdt å merke at brukeren som opprettes må manuelt godkjennes av Fortanix. Dermed så er dette et steg som kan ta en del tid på Fortanix sin side. Men hvis det skulle haste så går det an å fremskyve prosessen ved å kontakte Fortanix direkte.
-* Gjør [Container Registry innstillinger](#CR)
-* Gjør [Bygging av docker image](#dockerbuild)
-* Gjør [Pushing av docker image til Azure Container Registry (CR)](#dockerpush)
-* Følg steg 3 i fortanix guiden. Merk at ved punkt 3 så benytter vi oss av docker imaget som ble laget i stegene ovenfor. Dette gjør vi for å spesifisere hvilket image som skal gjøres konfidensielt. Applikasjonen ble konfigurert slik:
+* [Container Registry innstillinger](#CR)
+* [Autentiser CCM mot CR](#connectCR)
+* [Bygging av docker image](#dockerbuild)
+* [Pushing av docker image til Azure Container Registry (CR)](#dockerpush)
+* Følg steg 3 i fortanix guiden. Merk at ved punkt 3 så benytter vi oss av docker imaget som ble laget i stegene ovenfor. Dette imaget skal gjøre konfidensielt. Docker imaget phpsite vil altså være det orginale imaget, mens conf-apache-server blir navnet på det konfidensielle imaget. Applikasjonen ble dermed konfigurert slik:
 ![](./images/createApplicationPart1.png)
 ![](./images/createApplicationPart2.png)
 ![](./images/createApplicationPart3.png)
 Certificate Configuration skal stå tomt
-* Følg 
+* Følg steg 4 i fortanix guiden. Her er det viktig at man velger riktig tagg på imaget, slik at man konverterer riktig image. I tillegg så må man forsikre seg om at "Use saved credentials" er huket av. Ettersom image navnene ble spesifisert når applikasjonen ble laget, så trenger en bare å fylle ut riktig tagg. Da vil konfigurasjonen se slik ut:
+![](./images/imageCreate.png)
+* Følg steg 5 i fortanix guiden.
+* Følg steg 6.1 og 6.2 i fortanix guiden. 
+* Kopier "join token" inn i $Token variabelen som befinner seg i ./confidential/deployment/setup.ps1 filen. 
+* [Non-Confidential setup](#nonconf)
+* [Confidential setup](#conf)
 # <a name="CR"></a>Container Registry innstillinger
 
 For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og publsisere docker images så er den nødt til å autentiseres. Dette kan oppnås ved hjelp av brukernavn og passord, noe som krever at en endrer på noen innstillinger hos "Container Registry" (CR). Etter opprettelse av resurssen så er en nødt til å gå inn på "Access keys" som befinner seg under "Settings". Videre så må "Admin user" være satt til "Enabled". Når dette er gjort så vil en få tilgang på noen passord som senere skal brukes til å autentisere CCM. Til slutt så burde CR se tilnærmet lik ut som på bilde under.
@@ -37,7 +44,7 @@ For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og p
 ![](./images/kubdocker.png)
 
 ## <a name="connectCR"></a>Autentiser CCM mot CR
-For å autentisere CCM mot CR så følger man punkt 1-3 i fortanix sin ["User's Guide: Image Registry"](https://support.fortanix.com/hc/en-us/articles/360048967971-User-s-Guide-Image-Registry). Bruk informasjonen fra [Container Registry innstillinger](#CR) til å fylle ut skjemaet. Da vil konfigurasjonen se circa slik ut:
+For å autentisere CCM mot CR så følger man punkt 1-5 i fortanix sin ["User's Guide: Image Registry"](https://support.fortanix.com/hc/en-us/articles/360048967971-User-s-Guide-Image-Registry). Bruk informasjonen fra [Container Registry innstillinger](#CR) til å fylle ut skjemaet. Da vil konfigurasjonen se circa slik ut:
 ![](./images/autentiserCCM.png)
 
 # <a name="dockerbuild"></a>Bygging av docker image
@@ -57,7 +64,7 @@ docker push kubdocker.azurecr.io/phpsite:v1
 ```
 # Utrullingsguide av miljø:
 
-## Confidential setup
+## <a name="conf"></a>Confidential setup
 
 ```
 cd confidential/infrastructure
@@ -71,7 +78,7 @@ cd confidential/deployment
 #Kjør kommandoene i setup.ps1
 ```
 
-## Non-Confidential setup
+## <a name="nonconf"></a>Non-Confidential setup
 ```
 cd non-confidential/infrastructure
 terraform init -backend-config="nonConf.tfbackend"
