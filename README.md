@@ -44,7 +44,7 @@ For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og p
 ![](./images/kubdocker.png)
 
 ## <a name="autentiser-ccm-mot-cr"></a>Autentiser CCM mot CR
-For å autentisere CCM mot CR så følger man punkt 1-5 i fortanix sin ["User's Guide: Image Registry"](https://support.fortanix.com/hc/en-us/articles/360048967971-User-s-Guide-Image-Registry). Bruk informasjonen fra [Container Registry innstillinger](#CR) til å fylle ut skjemaet. Da vil konfigurasjonen se circa slik ut:
+For å autentisere CCM mot CR så følger man punkt 1-5 i fortanix sin ["User's Guide: Image Registry"](https://support.fortanix.com/hc/en-us/articles/360048967971-User-s-Guide-Image-Registry). Bruk informasjonen fra [Container Registry innstillinger](#container-registry-innstillinger) til å fylle ut skjemaet. Da vil konfigurasjonen se circa slik ut:
 ![](./images/autentiserCCM.png)
 
 # <a name="dockerbuild"></a>Bygging av docker image
