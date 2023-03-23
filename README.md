@@ -22,7 +22,7 @@ Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å repl
 * Følg steg 1 i fortanix guiden
 * Følg steg 2 i fortanix guiden. Husk å huke av for "This is a test-only deployment". Her er det verdt å merke at brukeren som opprettes må manuelt godkjennes av Fortanix. Dermed så er dette et steg som kan ta en del tid på Fortanix sin side. Men hvis det skulle haste så går det an å fremskyve prosessen ved å kontakte Fortanix direkte.
 * [Container Registry innstillinger](#container-registry-innstillinger)
-* [Autentiser CCM mot CR](#connectCR)
+* [Autentiser CCM mot CR](#autentiser-ccm-mot-cr)
 * [Bygging av docker image](#dockerbuild)
 * [Pushing av docker image til Azure Container Registry (CR)](#dockerpush)
 * Følg steg 3 i fortanix guiden. Merk at ved punkt 3 så benytter vi oss av docker imaget som ble laget i stegene ovenfor. Dette imaget skal gjøre konfidensielt. Docker imaget phpsite vil altså være det orginale imaget, mens conf-apache-server blir navnet på det konfidensielle imaget. Applikasjonen ble dermed konfigurert slik:
@@ -43,7 +43,7 @@ For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og p
 
 ![](./images/kubdocker.png)
 
-## <a name="connectCR"></a>Autentiser CCM mot CR
+## <a name="autentiser-ccm-mot-cr"></a>Autentiser CCM mot CR
 For å autentisere CCM mot CR så følger man punkt 1-5 i fortanix sin ["User's Guide: Image Registry"](https://support.fortanix.com/hc/en-us/articles/360048967971-User-s-Guide-Image-Registry). Bruk informasjonen fra [Container Registry innstillinger](#CR) til å fylle ut skjemaet. Da vil konfigurasjonen se circa slik ut:
 ![](./images/autentiserCCM.png)
 
