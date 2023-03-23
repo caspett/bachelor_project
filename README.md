@@ -29,11 +29,17 @@ Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å repl
 ![](./images/createApplicationPart2.png)
 ![](./images/createApplicationPart3.png)
 Certificate Configuration skal stå tomt
+* Følg 
 # <a name="CR"></a>Container Registry innstillinger
 
 For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og publsisere docker images så er den nødt til å autentiseres. Dette kan oppnås ved hjelp av brukernavn og passord, noe som krever at en endrer på noen innstillinger hos "Container Registry" (CR). Etter opprettelse av resurssen så er en nødt til å gå inn på "Access keys" som befinner seg under "Settings". Videre så må "Admin user" være satt til "Enabled". Når dette er gjort så vil en få tilgang på noen passord som senere skal brukes til å autentisere CCM. Til slutt så burde CR se tilnærmet lik ut som på bilde under.
 
 ![](./images/kubdocker.png)
+
+## <a name="connectCR"></a>Autentiser CCM mot CR
+For å autentisere CCM mot CR så følger man punkt 1-3 i fortanix sin ["User's Guide: Image Registry"](https://support.fortanix.com/hc/en-us/articles/360048967971-User-s-Guide-Image-Registry). Bruk informasjonen fra [Container Registry innstillinger](#CR) til å fylle ut skjemaet. Da vil konfigurasjonen se circa slik ut:
+![](./images/autentiserCCM.png)
+
 # <a name="dockerbuild"></a>Bygging av docker image
 
 I dette oppsettet så bygger vi et image som vi kaller phpsite og tagger den med v1 for å holde kontroll på versjonen av imaget
