@@ -5,4 +5,4 @@ if (!(Get-Command choco.exe -ErrorAction SilentlyContinue)) {
 }
 
 # Install MySQL, Git, Terraform and Azure CLI using Chocolatey
-choco install mysql git terraform azure-cli -y
+choco install mysql git terraform azure-cli kubernetes-cli -y

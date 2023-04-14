@@ -39,7 +39,7 @@ Nedenfor har vi satt opp guide med oversikt over hva som må gjøres for å repl
 * [Confidential setup](#conf)
 # <a name="container-registry-innstillinger"></a>Container Registry innstillinger
 
-For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og publsisere docker images så er den nødt til å autentiseres. Dette kan oppnås ved hjelp av brukernavn og passord, noe som krever at en endrer på noen innstillinger hos "Container Registry" (CR). Etter opprettelse av resurssen så er en nødt til å gå inn på "Access keys" som befinner seg under "Settings". Videre så må "Admin user" være satt til "Enabled". Når dette er gjort så vil en få tilgang på noen passord som senere skal brukes til å autentisere CCM. Til slutt så burde CR se tilnærmet lik ut som på bilde under.
+For at fortanix sin "Confidential Computing Manager" (CCM) skal kunne hente og publisere docker images så er den nødt til å autentiseres. Dette kan oppnås ved hjelp av brukernavn og passord, noe som krever at en endrer på noen innstillinger hos "Container Registry" (CR). Etter opprettelse av resurssen så er en nødt til å gå inn på "Access keys" som befinner seg under "Settings". Videre så må "Admin user" være satt til "Enabled". Når dette er gjort så vil en få tilgang på noen passord som senere skal brukes til å autentisere CCM. Til slutt så burde CR se tilnærmet lik ut som på bilde under.
 
 ![](./images/kubdocker.png)
 

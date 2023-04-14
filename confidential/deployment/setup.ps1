@@ -1,14 +1,14 @@
 
 
 #Get cluster credentials
-az aks get-credentials --resource-group rg-confidential-dev --name conf-arck-web-cluster
+az aks get-credentials --resource-group rg-confidential-dev --name conf-arck-web-clustery
 
 ## Retrieve the join token for your Fortanix CCM account from the CCM UI and store it as a Kubernetes secret in your cluster.
 # Navigate to the COMPUTE NODES tab in the CCM UI and click + ENROLL NODE to bring up the token dialog. Copy the token into the following variable
 
-$token = "MX1emNUDwnpWNXpjf0ZEVVJfkwtq67Vj9M6nhC8M4Xqs31Tizkcynnhz74uXttEPI1CPAhKaMpsIguraFle4fg"
+$Token = "MX1emNUDwnpWNXpjf0ZEVVJfkwtq67Vj9M6nhC8M4Xqs31Tizkcynnhz74uXttEPI1CPAhKaMpsIguraFle4fg"
 # Use the following command to store the token as a Kubernetes secret for the cluster (Replace <token> value with your token)
-kubectl create secret generic em-token --from-literal=token=$token
+kubectl create secret generic em-token --from-literal=token=$Token
 
 # Deploy the node agent DaemonSet
 kubectl create -f agent-daemonset.yaml
@@ -23,7 +23,7 @@ kubectl apply -f conf-webserver.yaml
 kubectl logs -l app=sgx-test
 
 #Print logs to file
-kubectl logs sgx-test-l44k6 > log2.txt
+kubectl logs sgx-test-wvkkf > log2.txt
 
 
 #Cleanup

@@ -1,4 +1,4 @@
-FROM httpd:latest
+FROM ubuntu:20.04
 ENV TZ=Europe/Oslo
 WORKDIR /home/ubuntu/web-bookface
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

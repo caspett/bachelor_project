@@ -49,8 +49,8 @@ resource "kubernetes_deployment" "apache_server" {
 
           resources {
             limits = {
-              cpu    = "0.5"
-              memory = "512Mi"
+              cpu    = "2"
+              memory = "2Gi"
             }
             requests = {
               cpu    = "250m"

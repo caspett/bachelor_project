@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: sgxtest
-        image: kubdocker.azurecr.io/conf-apache-server:v4
+        image: kubdocker.azurecr.io/conf-apache-server:v1
         env:
         - name: ENCLAVEOS_LOG_LEVEL
           value: debug
@@ -29,7 +29,7 @@ spec:
           
         resources:
           limits:
-            sgx.intel.com/epc: 6Gi # This limit will automatically place the job into a confidential computing node and mount the required driver volumes. sgx limit setting needs "confcom" AKS Addon as referenced above. 
+            sgx.intel.com/epc: 2Gi # This limit will automatically place the job into a confidential computing node and mount the required driver volumes. sgx limit setting needs "confcom" AKS Addon as referenced above. 
       restartPolicy: Never
   backoffLimit: 0
 
