@@ -5,7 +5,6 @@ variable "target_resource_group" {
 
 variable "config_path" {
   description = "Path to kube config"
-  default = "C:/Users/Cn5043/.kube/config"
 }
 
 # MS SQL server and database variables
