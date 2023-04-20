@@ -63,7 +63,7 @@ docker tag phpsite:v1 kubdocker.azurecr.io/phpsite:v1
 docker push kubdocker.azurecr.io/phpsite:v1
 ```
 # Utrullingsguide av miljø:
-
+Merk at Terraform vil spørre om riktig sti til Kubernetes Configen din. (Standard sti er ofte satt til: ~/.kube/config) 
 ## <a name="conf"></a>Confidential setup
 
 ```
