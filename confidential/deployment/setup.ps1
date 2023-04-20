@@ -1,7 +1,7 @@
 
 
 #Get cluster credentials
-az aks get-credentials --resource-group rg-confidential-dev --name conf-arck-web-clustery
+az aks get-credentials --resource-group rg-confidential-dev --name conf-arck-web-cluster
 
 ## Retrieve the join token for your Fortanix CCM account from the CCM UI and store it as a Kubernetes secret in your cluster.
 # Navigate to the COMPUTE NODES tab in the CCM UI and click + ENROLL NODE to bring up the token dialog. Copy the token into the following variable
